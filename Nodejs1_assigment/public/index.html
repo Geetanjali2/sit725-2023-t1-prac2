@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simple Calculator</title>
+</head>
+<body>
+
+  <h1>Simple Calculator</h1>
+
+  <form id="calculatorForm">
+    <label for="first_number">Number 1:</label>
+    <input type="text" id="first_number" name="first_number" required>
+
+    <label for="second_number">Number 2:</label>
+    <input type="text" id="second_number" name="second_number" required>
+
+    <button type="button" onclick="calculate()">Add</button>
+  </form>
+
+  <p id="result"></p>
+
+  <script>
+    function calculate() {
+      const first_number = document.getElementById('first_number').value;
+      const second_number = document.getElementById('second_number').value;
+
+      fetch(`http://localhost:3000/add?first_number=${first_number}&second_number=${second_number}`)
+        .then(response => response.json())
+        .then(data => {
+          document.getElementById('result').innerText = `Result: ${data.result}`;
+        })
+        .catch(error => {
+          console.error('Error:', error);
+          window.alert(data.result); 
+          document.getElementById('result').innerText = 'Error occurred. Please try again.';
+        });
+    }
+  </script>
+
+</body>
+</html>
+
