@@ -13,7 +13,7 @@ app.get('/add', (req, res) => {
   if (isNaN(first_number) || isNaN(second_number)) {
     return res.status(400).json({ error: 'Invalid parameters. Please provide valid numbers.' });
   }
-  if (first_number === null || second_number === null) {
+  if (first_number === undefined || second_number === undefined) {
       return res.status(400).json({ error: 'Invalid parameters. Please provide both numbers.' });
   }
     
@@ -23,5 +23,5 @@ app.get('/add', (req, res) => {
 });
 
 app.listen(port, () => {
-  console.log('Server is running at http://localhost:${port}');
+  console.log(`Server is running at http://localhost:${port}`);
 });
